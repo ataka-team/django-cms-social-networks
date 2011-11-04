@@ -12,11 +12,8 @@ setup(
     download_url= 'https://github.com/psaavedra/django-cms-social-networks/zipball/master',
     packages = find_packages(),
     package_data={
-        'cms_pictures_polaroid': [
-            'templates/cms_pictures_polaroid/*.html',
-        ],
-        'cms_pictures_slider': [
-            'templates/cms_pictures_slider/*.html',
+        'cms_social_facebook': [
+            'templates/cms_social_facebook/*.html',
         ],
     },
     zip_safe=False,
