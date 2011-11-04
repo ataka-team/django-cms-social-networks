@@ -1,6 +1,6 @@
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from cms.plugins.facebook import models
+from cms_social_facebook import models
 
 class FacebookCommentsPlugin(CMSPluginBase):
     model = models.FacebookComments
