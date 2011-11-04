@@ -1,0 +1,9 @@
+
+Notes
+-----
+
+Social networks plugins as Facebook Comments plugin need add the *xmlns* block on the *html* tag
+of the *.html* template. For example::
+
+  <html xmlns="http://www.w3.org/1999/xhtml" {%render_block "xmlns" %}>
+
