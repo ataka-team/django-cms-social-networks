@@ -25,9 +25,13 @@ setup(
     packages = find_packages(),
     package_data={
         'cms_social_facebook': [
-            'templates/cms_social_facebook/*.html',
+            'templates/*/*.html',
+            'static/*/css/*.css',
+            'static/*/images/*',
+            'static/*/js/*.js',
         ],
     },
+
     zip_safe=False,
     install_requires=[
         "django-cms>=2.1",
