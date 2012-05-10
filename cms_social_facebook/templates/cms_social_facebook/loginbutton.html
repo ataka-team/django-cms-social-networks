@@ -1,0 +1,23 @@
+{% load sekizai_tags %}
+
+{% addtoblock "xmlns" %} xmlns:fb="http://ogp.me/ns/fb#"  {% endaddtoblock %}
+
+{% addtoblock "js" %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId={{ loginbutton.appId }}";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% endaddtoblock %}
+
+
+<fb:login-button
+             {% if loginbutton.width %}  width="{{ loginbutton.width}}" {% endif %}
+             {% if not loginbutton.show_faces %}  show-faces="false" {% endif %}
+             {% if loginbutton.max_rows %}  max-rows="{{ loginbutton.max_rows }}" {% endif %}
+             colorscheme="{{ loginbutton.color_scheme}}">
+</fb:login-button>

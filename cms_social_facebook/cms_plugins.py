@@ -58,7 +58,7 @@ plugin_pool.register_plugin(FacebookLikeboxPlugin)
 
 class FacebookLikePlugin(CMSPluginBase):
     model = models.FacebookLike
-    name = 'Social Facebook Like Plugin'
+    name = 'Social Facebook Like Button Plugin'
     render_template = 'cms_social_facebook/like.html'
 
     def render(self, context, instance, placeholder):
@@ -73,5 +73,23 @@ class FacebookLikePlugin(CMSPluginBase):
         return context
 
 plugin_pool.register_plugin(FacebookLikePlugin)
+
+class FacebookLoginButtonPlugin(CMSPluginBase):
+    model = models.FacebookLoginButton
+    name = 'Social Facebook Login Button Plugin'
+    render_template = 'cms_social_facebook/loginbutton.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({'instance': instance, 'name': self.name})
+        return context
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'loginbutton': instance,
+            'placeholder': placeholder
+        })
+        return context
+
+plugin_pool.register_plugin(FacebookLoginButtonPlugin)
 
 
