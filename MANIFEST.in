@@ -1,3 +1,4 @@
 include README
+include CHANGELOG
 recursive-include cms_social_facebook/templates *
 recursive-include cms_social_facebook/static *

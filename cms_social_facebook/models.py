@@ -110,7 +110,7 @@ class FacebookLike(CMSPlugin):
     def __unicode__(self):
         return "Like (%s)" % (self.pageurl)
 
-class FacebookFacepile(CMSPlugin):
+class FacebookLoginButton(CMSPlugin):
     appId = models.CharField(_("App ID"))
 
     width = models.PositiveSmallIntegerField(_("Width"), default=None, null=True,
