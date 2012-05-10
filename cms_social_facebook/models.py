@@ -17,3 +17,18 @@ class FacebookComments(CMSPlugin):
 
     def __unicode__(self):
         return "Comments (%s)" % (self.pageurl)
+
+class FacebookFacepile(CMSPlugin):
+    pageurl = models.URLField(_("URL to comment on"))
+    width = models.PositiveSmallIntegerField(_("Width"), default=None, null=True,
+        blank=True, help_text=_("Leave empty for auto scaling"))
+    color_scheme = models.CharField(_("Color Scheme"), choices=COLOR_CHOICES, default='light', max_length=50)
+
+    max_rows = models.PositiveSmallIntegerField(_("Max rows"),
+        default=1)
+
+    action = models.CharField(_("Actions separate by commas"),
+        default=None)
+
+    def __unicode__(self):
+        return "Facepile (%s)" % (self.pageurl)

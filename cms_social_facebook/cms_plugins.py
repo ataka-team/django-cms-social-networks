@@ -19,3 +19,22 @@ class FacebookCommentsPlugin(CMSPluginBase):
         return context
 
 plugin_pool.register_plugin(FacebookCommentsPlugin)
+
+
+class FacebookFacepilePlugin(CMSPluginBase):
+    model = models.FacebookFacepile
+    name = 'Social Facebook Facepile Plugin'
+    render_template = 'cms_social_facebook/facepile.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({'instance': instance, 'name': self.name})
+        return context
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'facepile': instance,
+            'placeholder': placeholder
+        })
+        return context
+
+plugin_pool.register_plugin(FacebookFacepilePlugin)
