@@ -20,7 +20,6 @@ class FacebookCommentsPlugin(CMSPluginBase):
 
 plugin_pool.register_plugin(FacebookCommentsPlugin)
 
-
 class FacebookFacepilePlugin(CMSPluginBase):
     model = models.FacebookFacepile
     name = 'Social Facebook Facepile Plugin'
@@ -38,3 +37,23 @@ class FacebookFacepilePlugin(CMSPluginBase):
         return context
 
 plugin_pool.register_plugin(FacebookFacepilePlugin)
+
+class FacebookLikeboxPlugin(CMSPluginBase):
+    model = models.FacebookLikebox
+    name = 'Social Facebook Likebox Plugin'
+    render_template = 'cms_social_facebook/likebox.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({'instance': instance, 'name': self.name})
+        return context
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'likebox': instance,
+            'placeholder': placeholder
+        })
+        return context
+
+plugin_pool.register_plugin(FacebookLikeboxPlugin)
+
+
