@@ -56,4 +56,22 @@ class FacebookLikeboxPlugin(CMSPluginBase):
 
 plugin_pool.register_plugin(FacebookLikeboxPlugin)
 
+class FacebookLikePlugin(CMSPluginBase):
+    model = models.FacebookLike
+    name = 'Social Facebook Like Plugin'
+    render_template = 'cms_social_facebook/like.html'
+
+    def render(self, context, instance, placeholder):
+        context.update({'instance': instance, 'name': self.name})
+        return context
+
+    def render(self, context, instance, placeholder):
+        context.update({
+            'like': instance,
+            'placeholder': placeholder
+        })
+        return context
+
+plugin_pool.register_plugin(FacebookLikePlugin)
+
 

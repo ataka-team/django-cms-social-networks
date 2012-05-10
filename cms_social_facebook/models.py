@@ -7,6 +7,26 @@ COLOR_CHOICES = [
     ('dark', _('dark')),
 ]
 
+ACTION_CHOICES = [
+    ('like', _('like')),
+    ('recommend', _('recommend')),
+]
+
+LAYOUT_CHOICES = [
+    ('standard', _('standard')),
+    ('box_count', _('box_count')),
+    ('button_count', _('button_count')),
+]
+
+FONT_CHOICES = [
+    ('arial', _('arial')),
+    ('tahoma', _('tahoma')),
+    ('verdana', _('verdana')),
+    ('segoe ui', _('segoe ui')),
+    ('lucida grande', _('lucida grande')),
+    ('trebuchet ms', _('trebuchet ms')),
+]
+
 class FacebookComments(CMSPlugin):
     pageurl = models.URLField(_("URL to comment on"))
     num_posts = models.PositiveSmallIntegerField(_("Number of posts"),
@@ -35,8 +55,7 @@ class FacebookFacepile(CMSPlugin):
 
 class FacebookLikebox(CMSPlugin):
     pageurl = models.URLField(_("URL that you like it"))
-    num_posts = models.PositiveSmallIntegerField(_("Number of posts"),
-        default=2)
+
     width = models.PositiveSmallIntegerField(_("Width"), default=None, null=True,
         blank=True, help_text=_("Leave empty for auto scaling"))
     height = models.PositiveSmallIntegerField(_("Height"), default=None, null=True,
@@ -56,9 +75,39 @@ class FacebookLikebox(CMSPlugin):
     header = models.BooleanField(_("Header"),
             default=True)
 
+    def __unicode__(self):
+        return "Likebox (%s)" % (self.pageurl)
+
+
+class FacebookLike(CMSPlugin):
+    pageurl = models.URLField(_("URL that you like it"))
+
+    width = models.PositiveSmallIntegerField(_("Width"), default=None, null=True,
+        blank=True, help_text=_("Leave empty for auto scaling"))
+
+    color_scheme = models.CharField(_("Color Scheme"), choices=COLOR_CHOICES,
+            default='light', max_length=50)
+
+    action = models.CharField(_("Action"), choices=ACTION_CHOICES,
+            default='like', max_length=50)
+
+    layout = models.CharField(_("Layout"), choices=LAYOUT_CHOICES,
+            default='standard', max_length=50)
+
+    font = models.CharField(_("Font"), choices=FONT_CHOICES,
+            default='arial', max_length=50)
+
+    border_color = models.CharField(_("Color Scheme"), default=None,
+            null=True, blank=True, max_length=50)
+
+    show_faces = models.BooleanField(_("Show faces"),
+            default=True)
+
+    send = models.BooleanField(_("Send"),
+            default=True)
 
 
     def __unicode__(self):
-        return "Comments (%s)" % (self.pageurl)
+        return "Like (%s)" % (self.pageurl)
 
 
