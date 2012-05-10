@@ -125,4 +125,45 @@ class FacebookFacepile(CMSPlugin):
     def __unicode__(self):
         return "Facebook Login Button (%s)" % (self.appId)
 
+class FacebookLivestream(CMSPlugin):
+    appId = models.CharField(_("App ID"))
+
+    event_app_id = models.CharField(_("Event App Id"),
+            help_text=_("Your Facebook application ID or API key")
+            )
+
+    width = models.PositiveSmallIntegerField(_("Width"), default=None, null=True,
+        blank=True, help_text=_("Leave empty for auto scaling"))
+    height = models.PositiveSmallIntegerField(_("Height"), default=None, null=True,
+        blank=True, help_text=_("Leave empty for auto scaling"))
+
+    always_post_to_friends =models.BooleanField(_("Always_post to friends"),
+            blank=True,
+            null=True,
+            default=None,
+            help_text=_('''If set, all user posts will always go to their
+profile. This option should only be used when users' posts
+are likely to make sense outside of the context of the
+event.''')
+            )
+    xid = models.BooleanField(_("XID"),
+            blank=True,
+            null=True,
+            default=None,
+            help_text=_('''If you have multiple live stream boxes on the
+same page, specify a unique `xid` for each.''')
+            )
+    via_url = models.URLField(_("Via Attribution URL"),
+            blank=True,
+            null=True,
+            default=None,
+            help_text=_('''The URL that users are redirected to when they
+click on your app name on a status (if not specified, your
+Connect URL is used).''')
+            )
+
+
+    def __unicode__(self):
+        return "Facebook Live stream (%s)" % (self.appId)
+
 

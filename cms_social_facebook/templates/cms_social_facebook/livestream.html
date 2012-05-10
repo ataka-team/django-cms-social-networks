@@ -1,0 +1,30 @@
+{% load sekizai_tags %}
+
+{% addtoblock "xmlns" %} xmlns:fb="http://ogp.me/ns/fb#"  {% endaddtoblock %}
+
+{% addtoblock "js" %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/es_ES/all.js#xfbml=1&appId={{ livestream.appId }}";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% endaddtoblock %}
+
+
+<fb:live-stream href="{{ livestream.pageurl }}"
+             {% if livestream.width %}  width="{{ livestream.width}}" {% endif %}
+             {% if livestream.height %}  height="{{ livestream.height}}" {% endif %}
+             {% if livestream.always_post_to_friends %}  
+                always_post_to_friends="true" 
+             {% else %}
+                always_post_to_friends="false" 
+             {% endif %} 
+             {% if livestream.via_url %}  stream="{{ livestream.via_url}}" {% endif %}
+             {% if livestream.xid %}  stream="{{ livestream.xid}}" {% endif %}
+             event_app_id="{{ livestream.event_app_id}}"
+             >
+</fb:live-stream>
